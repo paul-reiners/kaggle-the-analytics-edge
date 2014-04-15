@@ -9,6 +9,16 @@ allTrain$Income = as.numeric(allTrain$Income)
 test$Income = factor(test$Income,levels=incomeLevels,ordered=TRUE)
 test$Income = as.numeric(test$Income)
 
+# Convert EducationLevel to a numeric
+educationLevels = 
+  c("", "Current K-12", "High School Diploma", "Current Undergraduate", 
+    "Associate's Degree", "Bachelor's Degree", "Master's Degree", "Doctoral Degree")
+allTrain$EducationLevel = 
+  factor(allTrain$EducationLevel,levels=educationLevels,ordered=TRUE)
+allTrain$EducationLevel = as.numeric(allTrain$EducationLevel)
+test$EducationLevel = factor(test$EducationLevel,levels=educationLevels,ordered=TRUE)
+test$EducationLevel = as.numeric(test$EducationLevel)
+
 # Randomly split the data into training and testing sets
 set.seed(1000)
 split = sample.split(allTrain$Happy, SplitRatio = 0.65)
