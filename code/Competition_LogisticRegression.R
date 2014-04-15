@@ -1,13 +1,10 @@
-# LINEAR REGRESSION
+# LOGISTIC REGRESSION
 
-# Current AUC = 0.7206549
+# Current AUC = 0.8390913
 
-# 79  -2	 Paul Reiners	 0.69257	4	 Tue, 15 Apr 2014 19:30:02
-# Your Best Entry
-# You improved on your best score by 0.00079. 
+# Your submission scored 0.66532, which is not an improvement of your best score. Keep trying!
 
 setwd("~/Dropbox/education/EdX/MITx/15.071x/kaggle-the-analytics-edge")
-library(ROCR)
 
 # Read in data
 allTrain = read.csv("./data/train.csv")
@@ -23,12 +20,15 @@ split = sample.split(allTrain$Happy, SplitRatio = 0.65)
 train = subset(allTrain, split==TRUE)
 trainTest = subset(allTrain, split==FALSE)
 
-## Linear Regression (all variables)
-model3 = lm(Happy ~ . - UserID, data=train)
-summary(model3)
+# Logistic Regression Model
+happyLog = glm(Happy ~ . - UserID, data = trainTest, family=binomial)
+summary(happyLog)
 
-# Make test set predictions
-predictTest = predict(model3, newdata=trainTest)
+# Predictions on the test set
+predictTest = predict(happyLog, type="response", newdata=trainTest)
+
+# Confusion matrix with threshold of 0.5
+table(trainTest$Happy, predictTest > 0.5)
 
 # Test set AUC 
 ROCRpred = prediction(predictTest, trainTest$Happy)
@@ -37,9 +37,7 @@ as.numeric(performance(ROCRpred, "auc")@y.values)
 # Make submission
 test = read.csv("./data/test.csv")
 
-testPred = predict(model3, newdata=test)
+testPred = predict(happyLog, type="response", newdata=test)
 submission = data.frame(UserID = test$UserID, Probability1 = testPred)
 submission[is.na(submission)] <- 0.5
-submission = transform(submission, Probability1 = ifelse(Probability1 > 1.0, 1.0, Probability1))
-submission = transform(submission, Probability1 = ifelse(Probability1 < 0.0, 0.0, Probability1))
-write.csv(submission, "./submissions/LinearRegression.csv", row.names=FALSE) 
+write.csv(submission, "./submissions/LogisticRegression.csv", row.names=FALSE) 
