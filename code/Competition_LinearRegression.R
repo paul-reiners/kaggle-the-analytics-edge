@@ -41,4 +41,4 @@ submission = data.frame(UserID = test$UserID, Probability1 = testPred)
 submission[is.na(submission)] <- 0.5
 submission = transform(submission, Probability1 = ifelse(Probability1 > 1.0, 1.0, Probability1))
 submission = transform(submission, Probability1 = ifelse(Probability1 < 0.0, 0.0, Probability1))
-write.csv(submission, "./submissions/LinearRegression2.csv", row.names=FALSE) 
+write.csv(submission, "./submissions/LinearRegression.csv", row.names=FALSE) 
