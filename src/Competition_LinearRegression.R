@@ -7,21 +7,8 @@
 # You improved on your best score by 0.00079. 
 
 setwd("~/Dropbox/education/EdX/MITx/15.071x/kaggle-the-analytics-edge")
-library(ROCR)
-
-# Read in data
-allTrain = read.csv("./data/train.csv")
-
-# Load the library caTools
-library(caTools)
-
-# Randomly split the data into training and testing sets
-set.seed(1000)
-split = sample.split(allTrain$Happy, SplitRatio = 0.65)
-
-# Split up the data using subset
-train = subset(allTrain, split==TRUE)
-trainTest = subset(allTrain, split==FALSE)
+library('ProjectTemplate')
+load.project()
 
 ## Linear Regression (all variables)
 model3 = lm(Happy ~ . - UserID, data=train)
@@ -35,8 +22,6 @@ ROCRpred = prediction(predictTest, trainTest$Happy)
 as.numeric(performance(ROCRpred, "auc")@y.values)
 
 # Make submission
-test = read.csv("./data/test.csv")
-
 testPred = predict(model3, newdata=test)
 submission = data.frame(UserID = test$UserID, Probability1 = testPred)
 submission[is.na(submission)] <- 0.5
