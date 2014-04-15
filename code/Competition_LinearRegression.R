@@ -1,6 +1,6 @@
 # LINEAR REGRESSION
 
-Current AUC = 0.7206549
+# Current AUC = 0.7206549
 
 # 79  -2	 Paul Reiners	 0.69257	4	 Tue, 15 Apr 2014 19:30:02
 # Your Best Entry
@@ -11,6 +11,12 @@ library(ROCR)
 
 # Read in data
 allTrain = read.csv("./data/train.csv")
+
+# Order Income
+incomes = 
+  c("", "under $25,000", "$25,001 - $50,000", "$50,000 - $74,999", 
+    "$75,000 - $100,000", "$100,001 - $150,000", "over $150,000")
+allTrain$Income = factor(allTrain$Income, levels=incomes, ordered=TRUE)
 
 # Load the library caTools
 library(caTools)
@@ -36,6 +42,10 @@ as.numeric(performance(ROCRpred, "auc")@y.values)
 
 # Make submission
 test = read.csv("./data/test.csv")
+
+# Order Income
+test$Income = factor(test$Income, levels=incomes, ordered=TRUE)
+
 testPred = predict(model3, newdata=test)
 submission = data.frame(UserID = test$UserID, Probability1 = testPred)
 submission[is.na(submission)] <- 0.5
