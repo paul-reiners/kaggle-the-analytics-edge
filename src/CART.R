@@ -24,4 +24,4 @@ as.numeric(performance(ROCRpred, "auc")@y.values)
 testPred = predict(tree, newdata=test)
 testPred.prob = testPred[,2]
 submission = data.frame(UserID = test$UserID, Probability1 = testPred.prob)
-write.csv(submission, "./submissions/CART.csv", row.names=FALSE) 
+write.csv(submission, "./reports/CART.csv", row.names=FALSE) 

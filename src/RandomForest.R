@@ -24,4 +24,4 @@ auc1
 # Make submission
 testPred = predict(forest, newdata=test,type="prob")[,2]
 submission = data.frame(UserID = test$UserID, Probability1 = testPred)
-write.csv(submission, "./submissions/RandomForest.csv", row.names=FALSE) 
+write.csv(submission, "./reports/RandomForest.csv", row.names=FALSE) 

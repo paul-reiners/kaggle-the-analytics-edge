@@ -24,4 +24,4 @@ as.numeric(performance(ROCRpred, "auc")@y.values)
 testPred = predict(happyLog, type="response", newdata=test)
 submission = data.frame(UserID = test$UserID, Probability1 = testPred)
 write.csv(
-  submission, "./submissions/LogisticRegression.csv", row.names=FALSE) 
+  submission, "./reports/LogisticRegression.csv", row.names=FALSE) 
