@@ -1,6 +1,6 @@
 # LINEAR REGRESSION
 
-# Current AUC = 0.7237063
+# Current AUC = 0.7237063/0.72161
 
 # 82  ↓6	 Paul Reiners	 0.72161	8	 Wed, 16 Apr 2014 00:40:05
 # Your Best Entry
