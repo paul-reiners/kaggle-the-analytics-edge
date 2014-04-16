@@ -1,9 +1,6 @@
 # LOGISTIC REGRESSION
 
-# Current AUC = 0.8254447
-
-# Your submission scored 0.66532, which is not an improvement of your best 
-# score. Keep trying!
+# Current AUC = 0.8254447/xxx
 
 setwd("~/Dropbox/education/EdX/MITx/15.071x/kaggle-the-analytics-edge")
 library('ProjectTemplate')
@@ -26,5 +23,5 @@ as.numeric(performance(ROCRpred, "auc")@y.values)
 # Make submission
 testPred = predict(happyLog, type="response", newdata=test)
 submission = data.frame(UserID = test$UserID, Probability1 = testPred)
-submission[is.na(submission)] <- 0.5
-write.csv(submission, "./submissions/LogisticRegression.csv", row.names=FALSE) 
+write.csv(
+  submission, "./submissions/LogisticRegression.csv", row.names=FALSE) 
