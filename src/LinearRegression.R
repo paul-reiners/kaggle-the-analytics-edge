@@ -1,6 +1,6 @@
 # LINEAR REGRESSION
 
-# Current AUC = 0.7224529/xxx
+# Current AUC = 0.7245533/xxx
 
 setwd("~/Dropbox/education/EdX/MITx/15.071x/kaggle-the-analytics-edge")
 library('ProjectTemplate')

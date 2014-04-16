@@ -22,24 +22,43 @@ educationLevels =
 allTrain$EducationLevel = 
   factor(allTrain$EducationLevel,levels=educationLevels,ordered=TRUE)
 allTrain$EducationLevel = as.numeric(allTrain$EducationLevel)
+allTrain$EducationLevel[allTrain$EducationLevel == 1] <- NA
 
 test$EducationLevel = factor(test$EducationLevel,levels=educationLevels,ordered=TRUE)
 test$EducationLevel = as.numeric(test$EducationLevel)
+test$EducationLevel[test$EducationLevel == 1] <- NA
+
+## Convert Gender to a numeric
+genderLevels = 
+  c("", "Female", "Male")
+
+allTrain$Gender = 
+  factor(allTrain$Gender,levels=genderLevels,ordered=TRUE)
+allTrain$Gender = as.numeric(allTrain$Gender)
+allTrain$Gender[allTrain$Gender == 1] <- NA
+
+test$Gender = factor(test$Gender,levels=genderLevels,ordered=TRUE)
+test$Gender = as.numeric(test$Gender)
+test$Gender[test$Gender == 1] <- NA
 
 # Multiple imputation
-imputationColumns = c("YOB", "EducationLevel", "Income")
+imputationColumns = c("YOB", "EducationLevel", "Income", "Gender")
 
 simpleAllTrain = allTrain[imputationColumns]
 set.seed(144)
 imputedAllTrain = complete(mice(simpleAllTrain))
 allTrain$YOB = imputedAllTrain$YOB
 allTrain$Income = imputedAllTrain$Income
+allTrain$EducationLevel = imputedAllTrain$EducationLevel
+allTrain$Gender = imputedAllTrain$Gender
 
 simpleTest = test[imputationColumns]
 set.seed(144)
 imputedTest = complete(mice(simpleTest))
 test$YOB = imputedTest$YOB
 test$Income = imputedTest$Income
+test$EducationLevel = imputedTest$EducationLevel
+test$Gender = imputedTest$Gender
 
 # Randomly split the data into training and testing sets
 set.seed(1000)

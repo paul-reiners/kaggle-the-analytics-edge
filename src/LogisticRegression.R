@@ -1,13 +1,13 @@
 # LOGISTIC REGRESSION
 
-# Current AUC = 0.8254447/xxx
+# Current AUC = 0.7232299/xxx
 
 setwd("~/Dropbox/education/EdX/MITx/15.071x/kaggle-the-analytics-edge")
 library('ProjectTemplate')
 load.project()
 
 # Logistic Regression Model
-happyLog = glm(Happy ~ . - UserID, data = trainTest, family=binomial)
+happyLog = glm(Happy ~ . - UserID, data = train, family=binomial)
 summary(happyLog)
 
 # Predictions on the test set
