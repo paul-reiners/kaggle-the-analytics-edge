@@ -7,9 +7,11 @@ incomeLevels =
 
 allTrain$Income = factor(allTrain$Income,levels=incomeLevels,ordered=TRUE)
 allTrain$Income = as.numeric(allTrain$Income)
+allTrain$Income[allTrain$Income == 1] <- NA
 
 test$Income = factor(test$Income,levels=incomeLevels,ordered=TRUE)
 test$Income = as.numeric(test$Income)
+test$Income[test$Income == 1] <- NA
 
 ## Convert EducationLevel to a numeric
 educationLevels = 
@@ -25,15 +27,19 @@ test$EducationLevel = factor(test$EducationLevel,levels=educationLevels,ordered=
 test$EducationLevel = as.numeric(test$EducationLevel)
 
 # Multiple imputation
-simpleAllTrain = allTrain[c("YOB", "EducationLevel")]
+imputationColumns = c("YOB", "EducationLevel", "Income")
+
+simpleAllTrain = allTrain[imputationColumns]
 set.seed(144)
 imputedAllTrain = complete(mice(simpleAllTrain))
 allTrain$YOB = imputedAllTrain$YOB
+allTrain$Income = imputedAllTrain$Income
 
-simpleTest = test[c("YOB", "EducationLevel")]
+simpleTest = test[imputationColumns]
 set.seed(144)
 imputedTest = complete(mice(simpleTest))
 test$YOB = imputedTest$YOB
+test$Income = imputedTest$Income
 
 # Randomly split the data into training and testing sets
 set.seed(1000)

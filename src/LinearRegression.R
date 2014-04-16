@@ -1,8 +1,8 @@
 # LINEAR REGRESSION
 
-# Current AUC = 0.7237063/0.72161
+# Current AUC = 0.7224529/xxx
 
-# 82  â†“6	 Paul Reiners	 0.72161	8	 Wed, 16 Apr 2014 00:40:05
+# 82  -†“6	 Paul Reiners	 0.72161	8	 Wed, 16 Apr 2014 00:40:05
 # Your Best Entry
 # You improved on your best score by 0.02904. 
 # You just moved up 31 positions on the leaderboard.

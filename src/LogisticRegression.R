@@ -1,8 +1,9 @@
 # LOGISTIC REGRESSION
 
-# Current AUC = 0.8238145
+# Current AUC = 0.8254447
 
-# Your submission scored 0.66532, which is not an improvement of your best score. Keep trying!
+# Your submission scored 0.66532, which is not an improvement of your best 
+# score. Keep trying!
 
 setwd("~/Dropbox/education/EdX/MITx/15.071x/kaggle-the-analytics-edge")
 library('ProjectTemplate')
