@@ -19,6 +19,17 @@ allTrain$EducationLevel = as.numeric(allTrain$EducationLevel)
 test$EducationLevel = factor(test$EducationLevel,levels=educationLevels,ordered=TRUE)
 test$EducationLevel = as.numeric(test$EducationLevel)
 
+# Multiple imputation
+simpleAllTrain = allTrain[c("YOB", "EducationLevel")]
+set.seed(144)
+imputedAllTrain = complete(mice(simpleAllTrain))
+allTrain$YOB = imputedAllTrain$YOB
+
+simpleTest = test[c("YOB", "EducationLevel")]
+set.seed(144)
+imputedTest = complete(mice(simpleTest))
+test$YOB = imputedTest$YOB
+
 # Randomly split the data into training and testing sets
 set.seed(1000)
 split = sample.split(allTrain$Happy, SplitRatio = 0.65)

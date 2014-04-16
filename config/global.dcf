@@ -4,6 +4,6 @@ recursive_loading: off
 munging: on
 logging: off
 load_libraries: on
-libraries: ROCR, caTools
+libraries: ROCR, caTools, mice
 as_factors: on
 data_tables: off

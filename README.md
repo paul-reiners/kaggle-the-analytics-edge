@@ -1,7 +1,8 @@
-    Place  delta3h     Score  Entries        Last Submission UTC
-       79       -2   0.69257        4  Tue, 15 Apr 2014 19:30:02
-       74       -5   0.69178        2  Tue, 15 Apr 2014 18:31:26
-       55      new	 0.64140        1  Tue, 15 Apr 2014 12:38:05
+    Place  delta3h     Score  Entries   Last Submission UTC  Entry
+       82       -6   0.72161        8       16 Apr 00:40:05  LinearRegressionAllVars
+       79       -2   0.69257        4       15 Apr 19:30:02
+       74       -5   0.69178        2       15 Apr 18:31:26
+       55      new	 0.64140        1       15 Apr 12:38:05
 
 To load your new project, you'll first need to `setwd()` into the directory
 where this README file is located. Then you need to run the following two

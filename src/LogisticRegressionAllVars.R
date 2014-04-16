@@ -1,6 +1,6 @@
 # LOGISTIC REGRESSION
 
-# Current AUC = 0.8390913
+# Current AUC = 0.8238145
 
 # Your submission scored 0.66532, which is not an improvement of your best score. Keep trying!
 
