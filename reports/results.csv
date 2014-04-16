@@ -1,4 +1,4 @@
 Algorithm,My AUC,Official AUC
 LinearRegression,0.7245533,
 LogisticRegression,0.7232299,
-CART,0.6587967,
+CART,0.6445096,
