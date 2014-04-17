@@ -1,9 +1,6 @@
 # LOGISTIC REGRESSION
 
-# Current AUC = 0.7171684/0.71587
-
-# Your submission scored 0.71587, which is not an improvement of your best score. 
-# Keep trying!
+# Current AUC = 0.7171684/xxx
 
 setwd("~/Dropbox/education/EdX/MITx/15.071x/kaggle-the-analytics-edge")
 library('ProjectTemplate')
@@ -15,7 +12,7 @@ happyLog =
     Happy ~ . - UserID 
     - Q124742 - Q96024 - Q98078 - Q98059 - Q98578 - Q99480 - Q99581 - Q100010 
     - Q100680 - Q100689 - Q101596 - Q101163 - Q102089 - Q102289 - Q103293, 
-    data = train, family=binomial)
+    data = trainTrain, family=binomial)
 summary(happyLog)
 
 # Predictions on the test set
@@ -26,7 +23,13 @@ ROCRpred = prediction(predictTest, trainTest$Happy)
 as.numeric(performance(ROCRpred, "auc")@y.values)
 
 # Make submission
-testPred = predict(happyLog, type="response", newdata=test)
+submissionHappyLog = 
+  glm(
+    Happy ~ . - UserID 
+    - Q124742 - Q96024 - Q98078 - Q98059 - Q98578 - Q99480 - Q99581 - Q100010 
+    - Q100680 - Q100689 - Q101596 - Q101163 - Q102089 - Q102289 - Q103293, 
+    data = train, family=binomial)
+testPred = predict(submissionHappyLog, type="response", newdata=test)
 submission = data.frame(UserID = test$UserID, Probability1 = testPred)
 write.csv(
   submission, "./reports/LogisticRegression.csv", row.names=FALSE) 
