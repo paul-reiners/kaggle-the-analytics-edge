@@ -1,9 +1,6 @@
 # CART
 
-# Current AUC = 0.6445096/0.62434
-
-# Your submission scored 0.62434, which is not an improvement of your best score. 
-# Keep trying!
+# Current AUC = 0.6445096/xxx
 
 setwd("~/Dropbox/education/EdX/MITx/15.071x/kaggle-the-analytics-edge")
 library('ProjectTemplate')
@@ -12,7 +9,7 @@ load.project()
 # Let's use all the variables
 
 # Create a CART model
-tree = rpart(Happy ~ . - UserID, data=train, method="class")
+tree = rpart(Happy ~ . - UserID, data=trainTrain, method="class")
 prp(tree)
 
 # Make predictions
@@ -24,7 +21,8 @@ ROCRpred = prediction(pred.prob, trainTest$Happy)
 as.numeric(performance(ROCRpred, "auc")@y.values)
 
 # Make submission
-testPred = predict(tree, newdata=test)
+submissionTree = rpart(Happy ~ . - UserID, data=train, method="class")
+testPred = predict(submissionTree, newdata=test)
 testPred.prob = testPred[,2]
 submission = data.frame(UserID = test$UserID, Probability1 = testPred.prob)
 write.csv(submission, "./reports/CART.csv", row.names=FALSE) 
