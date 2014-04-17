@@ -1,4 +1,5 @@
     Place  delta3h     Score  Entries   Last Submission UTC  Entry
+      124       -8   0.72821       11       17 Apr 00:05:50  RandomForest
        82       -6   0.72161        8       16 Apr 00:40:05  LinearRegressionAllVars
        79       -2   0.69257        4       15 Apr 19:30:02
        74       -5   0.69178        2       15 Apr 18:31:26

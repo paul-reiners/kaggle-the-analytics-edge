@@ -1,20 +1,25 @@
 # LOGISTIC REGRESSION
 
-# Current AUC = 0.7232299/xxx
+# Current AUC = 0.7171684/0.71587
+
+# Your submission scored 0.71587, which is not an improvement of your best score. 
+# Keep trying!
 
 setwd("~/Dropbox/education/EdX/MITx/15.071x/kaggle-the-analytics-edge")
 library('ProjectTemplate')
 load.project()
 
 # Logistic Regression Model
-happyLog = glm(Happy ~ . - UserID, data = train, family=binomial)
+happyLog = 
+  glm(
+    Happy ~ . - UserID 
+    - Q124742 - Q96024 - Q98078 - Q98059 - Q98578 - Q99480 - Q99581 - Q100010 
+    - Q100680 - Q100689 - Q101596 - Q101163 - Q102089 - Q102289 - Q103293, 
+    data = train, family=binomial)
 summary(happyLog)
 
 # Predictions on the test set
 predictTest = predict(happyLog, type="response", newdata=trainTest)
-
-# Confusion matrix with threshold of 0.5
-table(trainTest$Happy, predictTest > 0.5)
 
 # Test set AUC 
 ROCRpred = prediction(predictTest, trainTest$Happy)

@@ -1,6 +1,9 @@
 # CART
 
-# Current AUC = 0.6445096/xxx
+# Current AUC = 0.6445096/0.62434
+
+# Your submission scored 0.62434, which is not an improvement of your best score. 
+# Keep trying!
 
 setwd("~/Dropbox/education/EdX/MITx/15.071x/kaggle-the-analytics-edge")
 library('ProjectTemplate')
