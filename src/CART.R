@@ -6,10 +6,12 @@ setwd("~/Dropbox/education/EdX/MITx/15.071x/kaggle-the-analytics-edge")
 library('ProjectTemplate')
 load.project()
 
-# Let's use all the variables
+# Define cross-validation experiment
+fitControl = trainControl( method = "cv", number = 10 )
+cartGrid = expand.grid( .cp = (1:50)*0.01) 
 
 # Create a CART model
-tree = rpart(Happy ~ . - UserID, data=trainTrain, method="class")
+tree =  rpart(Happy ~ . - UserID, data=trainTrain, method="class")
 prp(tree)
 
 # Make predictions
