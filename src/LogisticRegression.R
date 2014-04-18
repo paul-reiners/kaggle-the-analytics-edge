@@ -67,11 +67,33 @@ ROCRpred = prediction(predictTest, trainTest$Happy)
 as.numeric(performance(ROCRpred, "auc")@y.values)
 
 # Make submission
+train["Q98197No"] <- factor(train$Q98197 == 'No')
+train["Q98869Yes"] <- factor(train$Q98869 == 'Yes')
+train["Q99716Yes"] <- factor(train$Q99716 == 'Yes')
+train["Q102687No"] <- factor(train$Q102687 == 'No')
+train["Q102674No"] <- factor(train$Q102674 == 'No')
+train["Q102906Yes"] <- factor(train$Q102906 == 'Yes')
+train["Q106389No"] <- factor(train$Q106389 == 'No')
+train["Q113584Technology"] <- factor(train$Q113584 == 'Technology')
+train["Q107869No"] <- factor(train$Q107869 == 'No')
+train["Q100562No"] <- factor(train$Q100562 == 'No')
+train["Q117193StandardHours"] <- factor(train$Q117193 == 'Standard hours')
+train["Q117186HotHeaded"] <- factor(train$Q117186 == 'Hot headed')
+train["Q119334No"] <- factor(train$Q119334 == 'No')
+train["Party5"] <- factor(train$Party == 'Republican')
+train["EducationLevel4"] <- factor(train$EducationLevel == "Associate's Degree")
+train["Income4"] <- factor(train$Income == "$75,000 - $100,000")
+train["Income5"] <- factor(train$Income == "$100,001 - $150,000")
+train["Income6"] <- factor(train$Income == "over $150,000")
+train["Q122769No"] <- factor(train$Q122769 == "No")
+
 submissionHappyLog = 
   glm(
-    Happy ~ . - UserID 
-    - Q124742 - Q96024 - Q98078 - Q98059 - Q98578 - Q99480 - Q99581 - Q100010 
-    - Q100680 - Q100689 - Q101596 - Q101163 - Q102089 - Q102289 - Q103293 - Q104996, 
+    Happy ~ Income4 + Income5 + Income6 + EducationLevel4 
+    + Party5 + Q122769No + Q119334No + Q118237 
+    + Q117186HotHeaded + Q117193StandardHours + Q115777 + Q113584Technology 
+    + Q107869No + Q106389No + Q102906Yes + Q102674No + Q102687No + Q101162 
+    + Q100562No + Q99716Yes + Q98869Yes + Q98197No, 
     data = train, family=binomial)
 testPred = predict(submissionHappyLog, type="response", newdata=test)
 submission = data.frame(UserID = test$UserID, Probability1 = testPred)
