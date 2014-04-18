@@ -1,64 +1,77 @@
 # Preprocessing script.
 
-## Convert Income to a numeric
+## Clean up Gender
+train$Gender[train$Gender == ""] <- NA
+train$Gender = factor(train$Gender)
+
+test$Gender[test$Gender == ""] <- NA
+test$Gender = factor(test$Gender)
+
+## Clean up Income
 incomeLevels = 
-  c("", "under $25,000", "$25,001 - $50,000", "$50,000 - $74,999", 
-    "$75,000 - $100,000", "$100,001 - $150,000", "over $150,000")
+  c("under $25,000", "$25,001 - $50,000", "$50,000 - $74,999", 
+    "$75,000 - $100,000", "$100,001 - $150,000", "over $150,000", "")
 
 train$Income = factor(train$Income,levels=incomeLevels,ordered=TRUE)
-train$Income = as.numeric(train$Income)
-train$Income[train$Income == 1] <- NA
+train$Income[train$Income == ""] <- NA
+train$Income = factor(train$Income)
 
 test$Income = factor(test$Income,levels=incomeLevels,ordered=TRUE)
-test$Income = as.numeric(test$Income)
-test$Income[test$Income == 1] <- NA
+test$Income[test$Income == ""] <- NA
+test$Income = factor(test$Income)
 
-## Convert EducationLevel to a numeric
+# Clean up HouseholdStatus
+train$HouseholdStatus[train$HouseholdStatus == ""] <- NA
+train$HouseholdStatus = factor(train$HouseholdStatus)
+
+test$HouseholdStatus[test$HouseholdStatus == ""] <- NA
+test$HouseholdStatus = factor(test$HouseholdStatus)
+
+## Clean up EducationLevel.
 educationLevels = 
-  c("", "Current K-12", "High School Diploma", "Current Undergraduate", 
+  c("Current K-12", "High School Diploma", "Current Undergraduate", 
     "Associate's Degree", "Bachelor's Degree", "Master's Degree", 
-    "Doctoral Degree")
+    "Doctoral Degree", "")
 
 train$EducationLevel = 
   factor(train$EducationLevel,levels=educationLevels,ordered=TRUE)
-train$EducationLevel = as.numeric(train$EducationLevel)
-train$EducationLevel[train$EducationLevel == 1] <- NA
+train$EducationLevel[train$EducationLevel == ""] <- NA
+train$EducationLevel = factor(train$EducationLevel)
 
-test$EducationLevel = factor(test$EducationLevel,levels=educationLevels,ordered=TRUE)
-test$EducationLevel = as.numeric(test$EducationLevel)
-test$EducationLevel[test$EducationLevel == 1] <- NA
+test$EducationLevel = 
+  factor(test$EducationLevel, levels=educationLevels, ordered=TRUE)
+test$EducationLevel[test$EducationLevel == ""] <- NA
+test$EducationLevel = factor(test$EducationLevel)
 
-## Convert Gender to a numeric
-genderLevels = 
-  c("", "Female", "Male")
+# Clean up Party.
+train$Party[train$Party == ""] <- NA
+train$Party = factor(train$Party)
 
-train$Gender = 
-  factor(train$Gender,levels=genderLevels,ordered=TRUE)
-train$Gender = as.numeric(train$Gender)
-train$Gender[train$Gender == 1] <- NA
-
-test$Gender = factor(test$Gender,levels=genderLevels,ordered=TRUE)
-test$Gender = as.numeric(test$Gender)
-test$Gender[test$Gender == 1] <- NA
+test$Party[test$Party == ""] <- NA
+test$Party = factor(test$Party)
 
 # Multiple imputation
-imputationColumns = c("YOB", "EducationLevel", "Income", "Gender")
+imputationColumns = 
+  c("YOB", "Gender", "Income", "HouseholdStatus", "EducationLevel", "Party", "votes")
 
-simpleAllTrain = train[imputationColumns]
+all = rbind(train[-c(8)], test)
+simple = all[imputationColumns]
 set.seed(144)
-imputedAllTrain = complete(mice(simpleAllTrain))
-train$YOB = imputedAllTrain$YOB
-train$Income = imputedAllTrain$Income
-train$EducationLevel = imputedAllTrain$EducationLevel
-train$Gender = imputedAllTrain$Gender
+imputed = complete(mice(simple))
 
-simpleTest = test[imputationColumns]
-set.seed(144)
-imputedTest = complete(mice(simpleTest))
-test$YOB = imputedTest$YOB
-test$Income = imputedTest$Income
-test$EducationLevel = imputedTest$EducationLevel
-test$Gender = imputedTest$Gender
+train$YOB = imputed[1:nrow(train),]$YOB
+train$Gender = imputed[1:nrow(train),]$Gender
+train$Income = imputed[1:nrow(train),]$Income
+train$HouseholdStatus = imputed[1:nrow(train),]$HouseholdStatus
+train$EducationLevel = imputed[1:nrow(train),]$EducationLevel
+train$Party = imputed[1:nrow(train),]$Party
+
+test$YOB = imputed[(nrow(train) + 1):nrow(all),]$YOB
+test$Gender = imputed[(nrow(train) + 1):nrow(all),]$Gender
+test$Income = imputed[(nrow(train) + 1):nrow(all),]$Income
+test$HouseholdStatus = imputed[(nrow(train) + 1):nrow(all),]$HouseholdStatus
+test$EducationLevel = imputed[(nrow(train) + 1):nrow(all),]$EducationLevel
+test$Party = imputed[(nrow(train) + 1):nrow(all),]$Party
 
 # Randomly split the data into training and testing sets
 set.seed(1000)
