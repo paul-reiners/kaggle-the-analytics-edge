@@ -3,4 +3,6 @@ submissions/LinearRegression2.csv
 .Rhistory
 .gitignore~
 reports/RandomForest.csv
-
+reports/LinearRegression.csv
+reports/LogisticRegression.csv
+reports/CART.csv

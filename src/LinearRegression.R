@@ -1,6 +1,9 @@
 # LINEAR REGRESSION
 
-# Current AUC = 0.719655/xxx
+# Current AUC = 0.719655/0.73187
+
+# Your submission scored 0.73187, which is not an improvement of your best score. 
+# Keep trying!
 
 setwd("~/Dropbox/education/EdX/MITx/15.071x/kaggle-the-analytics-edge")
 library('ProjectTemplate')

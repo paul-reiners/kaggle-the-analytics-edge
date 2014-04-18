@@ -2,10 +2,8 @@
 
 # Current AUC = 0.7390725/0.74280
 
-# 25  +115	 Paul Reiners	 0.74280	15	 Thu, 17 Apr 2014 16:39:50
-# Your Best Entry
-# You improved on your best score by 0.01460. 
-# You just moved up 144 positions on the leaderboard.
+# Your submission scored 0.74280, which is not an improvement of your best score. 
+# Keep trying!
 
 setwd("~/Dropbox/education/EdX/MITx/15.071x/kaggle-the-analytics-edge")
 library('ProjectTemplate')

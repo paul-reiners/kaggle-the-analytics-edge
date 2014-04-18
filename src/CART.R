@@ -1,14 +1,13 @@
 # CART
 
-# Current AUC = 0.6445096/xxx
+# Current AUC = 0.6445096/0.64036
+
+# Your submission scored 0.64036, which is not an improvement of your best score. 
+# Keep trying!
 
 setwd("~/Dropbox/education/EdX/MITx/15.071x/kaggle-the-analytics-edge")
 library('ProjectTemplate')
 load.project()
-
-# Define cross-validation experiment
-fitControl = trainControl( method = "cv", number = 10 )
-cartGrid = expand.grid( .cp = (1:50)*0.01) 
 
 # Create a CART model
 tree =  rpart(Happy ~ . - UserID, data=trainTrain, method="class")
