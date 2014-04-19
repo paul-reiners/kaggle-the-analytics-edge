@@ -1,6 +1,9 @@
 # LOGISTIC REGRESSION
 
-# Current AUC = 0.7235094/xxx
+# Current AUC = 0.7232299/0.71065
+
+# Your submission scored 0.71065, which is not an improvement of your best score. 
+# Keep trying!
 
 setwd("~/Dropbox/education/EdX/MITx/15.071x/kaggle-the-analytics-edge")
 library('ProjectTemplate')
@@ -86,6 +89,26 @@ train["Income4"] <- factor(train$Income == "$75,000 - $100,000")
 train["Income5"] <- factor(train$Income == "$100,001 - $150,000")
 train["Income6"] <- factor(train$Income == "over $150,000")
 train["Q122769No"] <- factor(train$Q122769 == "No")
+
+test["Q98197No"] <- factor(test$Q98197 == 'No')
+test["Q98869Yes"] <- factor(test$Q98869 == 'Yes')
+test["Q99716Yes"] <- factor(test$Q99716 == 'Yes')
+test["Q102687No"] <- factor(test$Q102687 == 'No')
+test["Q102674No"] <- factor(test$Q102674 == 'No')
+test["Q102906Yes"] <- factor(test$Q102906 == 'Yes')
+test["Q106389No"] <- factor(test$Q106389 == 'No')
+test["Q113584Technology"] <- factor(test$Q113584 == 'Technology')
+test["Q107869No"] <- factor(test$Q107869 == 'No')
+test["Q100562No"] <- factor(test$Q100562 == 'No')
+test["Q117193StandardHours"] <- factor(test$Q117193 == 'Standard hours')
+test["Q117186HotHeaded"] <- factor(test$Q117186 == 'Hot headed')
+test["Q119334No"] <- factor(test$Q119334 == 'No')
+test["Party5"] <- factor(test$Party == 'Republican')
+test["EducationLevel4"] <- factor(test$EducationLevel == "Associate's Degree")
+test["Income4"] <- factor(test$Income == "$75,000 - $100,000")
+test["Income5"] <- factor(test$Income == "$100,001 - $150,000")
+test["Income6"] <- factor(test$Income == "over $150,000")
+test["Q122769No"] <- factor(test$Q122769 == "No")
 
 submissionHappyLog = 
   glm(
