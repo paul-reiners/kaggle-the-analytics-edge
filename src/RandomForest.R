@@ -16,7 +16,10 @@ trainTrain$Happy = as.factor(trainTrain$Happy)
 trainTest$Happy = as.factor(trainTest$Happy)
 
 # Build random forest model
-forest = randomForest(Happy ~ . - UserID, data=trainTrain, nodesize=25)
+forest = 
+  randomForest(
+    Happy ~ . - UserID, data=trainTrain, nodesize=25, importance=TRUE, ntree=2000)
+varImpPlot(forest)
 
 # Make predictions
 PredictForest = predict(forest, newdata = trainTest,type="prob")[,2]
