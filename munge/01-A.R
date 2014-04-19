@@ -1,54 +1,39 @@
 # Preprocessing script.
 
-## Clean up Gender
-train$Gender[train$Gender == ""] <- NA
-train$Gender = factor(train$Gender)
+train = read.csv("./data/train.csv", na.strings = "")
+for (i in 9:109) {
+  train[, i] = as.numeric(train[, i]) - 1
+  train[, i][is.na(train[, i])] = mean(train[, i], na.rm=TRUE)
+}
 
-test$Gender[test$Gender == ""] <- NA
-test$Gender = factor(test$Gender)
+test = read.csv("./data/test.csv", na.strings = "")
+for (i in 8:108) {
+  test[, i] = as.numeric(test[, i]) - 1
+  test[, i][is.na(test[, i])] = mean(test[, i], na.rm=TRUE)
+}
+
+## Clean up YOB
+train$YOB = destring(as.character(train$YOB))
+test$YOB = destring(as.character(test$YOB))
 
 ## Clean up Income
 incomeLevels = 
   c("under $25,000", "$25,001 - $50,000", "$50,000 - $74,999", 
-    "$75,000 - $100,000", "$100,001 - $150,000", "over $150,000", "")
+    "$75,000 - $100,000", "$100,001 - $150,000", "over $150,000")
 
 train$Income = factor(train$Income,levels=incomeLevels,ordered=TRUE)
-train$Income[train$Income == ""] <- NA
-train$Income = factor(train$Income)
-
 test$Income = factor(test$Income,levels=incomeLevels,ordered=TRUE)
-test$Income[test$Income == ""] <- NA
-test$Income = factor(test$Income)
-
-# Clean up HouseholdStatus
-train$HouseholdStatus[train$HouseholdStatus == ""] <- NA
-train$HouseholdStatus = factor(train$HouseholdStatus)
-
-test$HouseholdStatus[test$HouseholdStatus == ""] <- NA
-test$HouseholdStatus = factor(test$HouseholdStatus)
 
 ## Clean up EducationLevel.
 educationLevels = 
   c("Current K-12", "High School Diploma", "Current Undergraduate", 
     "Associate's Degree", "Bachelor's Degree", "Master's Degree", 
-    "Doctoral Degree", "")
+    "Doctoral Degree")
 
 train$EducationLevel = 
   factor(train$EducationLevel,levels=educationLevels,ordered=TRUE)
-train$EducationLevel[train$EducationLevel == ""] <- NA
-train$EducationLevel = factor(train$EducationLevel)
-
 test$EducationLevel = 
   factor(test$EducationLevel, levels=educationLevels, ordered=TRUE)
-test$EducationLevel[test$EducationLevel == ""] <- NA
-test$EducationLevel = factor(test$EducationLevel)
-
-# Clean up Party.
-train$Party[train$Party == ""] <- NA
-train$Party = factor(train$Party)
-
-test$Party[test$Party == ""] <- NA
-test$Party = factor(test$Party)
 
 # Multiple imputation
 imputationColumns = 

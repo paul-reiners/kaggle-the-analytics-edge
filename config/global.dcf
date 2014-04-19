@@ -1,9 +1,9 @@
-data_loading: on
+data_loading: off
 cache_loading: on
 recursive_loading: off
 munging: on
 logging: off
 load_libraries: on
-libraries: ROCR, caTools, mice, rpart, rpart.plot, caret, e1071, randomForest
+libraries: ROCR, caTools, mice, rpart, rpart.plot, caret, e1071, randomForest, taRifx
 as_factors: on
 data_tables: off

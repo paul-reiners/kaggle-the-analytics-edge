@@ -1,9 +1,11 @@
 ## RANDOM FOREST
 
-# Current AUC = 0.7315179/xxx
+# Current AUC = 0.7365237/0.74290
 
-# Your submission scored 0.74020, which is not an improvement of your best score. 
-# Keep trying!
+# 51  -10	 Paul Reiners	 0.74290	25	 Sat, 19 Apr 2014 16:02:13
+# Your Best Entry
+# You improved on your best score by 0.00009. 
+# You just moved up 2 positions on the leaderboard.
 
 setwd("~/Dropbox/education/EdX/MITx/15.071x/kaggle-the-analytics-edge")
 library('ProjectTemplate')

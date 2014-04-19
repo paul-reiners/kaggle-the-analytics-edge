@@ -1,1 +1,1 @@
-Algorithm,My AUC,Official AUCRandomForest,0.7315179,0.7402LogisticRegression,0.7235094,0.71065LinearRegression,0.7134814,0.72858CART,0.6467291,0.64197
+Algorithm,My AUC,Official AUCRandomForest,0.7315179,0.7429LogisticRegression,0.7235094,LinearRegression,0.7134814,CART,0.6467291,
