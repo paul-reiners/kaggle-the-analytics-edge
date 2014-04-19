@@ -11,7 +11,7 @@ NTREE = 100
 # Build random forest model
 set.seed(415)
 fit <- cforest(as.factor(Happy) ~ . - UserID,
-               data = trainTrain, controls=cforest_unbiased(ntree=NTREE))
+               data = trainTrain, controls=cforest_unbiased(ntree=NTREE, mtry=3))
 
 # Make predictions
 probabilities <- unlist(treeresponse(fit, newdata=trainTest))
@@ -24,7 +24,7 @@ auc1
 
 # Create model on all data.
 submissionFit <- cforest(as.factor(Happy) ~ . - UserID,
-               data = train, controls=cforest_unbiased(ntree=NTREE))
+               data = train, controls=cforest_unbiased(ntree=NTREE, mtry=3))
 
 # Make submission
 probabilities <- unlist(treeresponse(submissionFit, newdata=test))
