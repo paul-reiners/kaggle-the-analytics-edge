@@ -14,11 +14,12 @@ load.project()
 # Convert outcome to factor
 trainTrain$Happy = as.factor(trainTrain$Happy)
 trainTest$Happy = as.factor(trainTest$Happy)
+NTREE = 100
 
 # Build random forest model
 forest = 
   randomForest(
-    Happy ~ . - UserID, data=trainTrain, nodesize=25, importance=TRUE, ntree=2000)
+    Happy ~ . - UserID, data=trainTrain, nodesize=25, importance=TRUE, ntree=NTREE)
 varImpPlot(forest)
 
 # Make predictions
@@ -30,7 +31,7 @@ auc1
 
 # Create model on all data.
 train$Happy = as.factor(train$Happy)
-submissionModel = randomForest(Happy ~ . - UserID, data=train, nodesize=25)
+submissionModel = randomForest(Happy ~ . - UserID, data=train, nodesize=25, ntree=NTREE)
 
 # Make submission
 testPred = predict(submissionModel, newdata=test,type="prob")[,2]
