@@ -1,12 +1,12 @@
 ## CONDITIONAL RANDOM FOREST
 
-# Current AUC = 0.7302629/XXX
+# Current AUC = 0.7298371/XXX
 
 setwd("~/Dropbox/education/EdX/MITx/15.071x/kaggle-the-analytics-edge")
 library('ProjectTemplate')
 load.project()
 
-NTREE = 100
+NTREE = 2000
 
 # Build random forest model
 set.seed(415)
