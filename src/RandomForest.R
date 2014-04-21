@@ -1,6 +1,6 @@
 ## RANDOM FOREST
 
-# Current AUC = 0.7361056/0.74277
+# Current AUC = 0.7281251/0.72816
 
 # Your submission scored 0.72816, which is not an improvement of your best score. 
 # Keep trying!
