@@ -2,9 +2,6 @@
 
 # Current AUC = 0.7463873/XXX
 
-# Your submission scored 0.73201, which is not an improvement of your best score. 
-# Keep trying!
-
 setwd("~/Dropbox/education/EdX/MITx/15.071x/kaggle-the-analytics-edge")
 library('ProjectTemplate')
 load.project()

@@ -1,4 +1,4 @@
 Algorithm,My AUC,Official AUC
 RandomForest,0.7281251,0.72816
+LogisticRegression,0.7225837,0.71611
 ConditionalRandomForest,0.7457412,
-LogisticRegression,0.7225837,

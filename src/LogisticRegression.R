@@ -1,8 +1,8 @@
 # LOGISTIC REGRESSION
 
-# Current AUC = 0.7225837/0.72153
+# Current AUC = 0.7225837/0.71611
 
-# Your submission scored 0.72153, which is not an improvement of your best score. 
+# Your submission scored 0.71611, which is not an improvement of your best score. 
 # Keep trying!
 
 setwd("~/Dropbox/education/EdX/MITx/15.071x/kaggle-the-analytics-edge")
@@ -18,11 +18,9 @@ trainTrain["Income6"] <- factor(trainTrain$Income == "over $150,000")
 
 happyLog = 
   glm(
-    Happy ~ Income5 + Income6 + EducationLevel4 
-    + Party5 + Q119334 + Q118237 
-    + Q117186 + Q117193 + Q113584 
-    + Q107869 + Q102906 + Q102687 + Q101162 
-    + Q99716 + Q98869 + Q98197, 
+    Happy ~ Q1227702 + Q1217002 + Q1210112 + Q1200142 + Q1193342 + Q1182332
+    + Q1182372 + Q1171932 + Q1164412 + Q1153902 + Q1147482 + Q1135832
+    + Q1087542 + Q1083422 + Q1078692 + Q1029062 + Q1022892 + Q1011622, 
     data = trainTrain, family=binomial)
 summary(happyLog)
 
@@ -52,11 +50,9 @@ test["Income6"] <- factor(test$Income == "over $150,000")
 
 submissionHappyLog = 
   glm(
-    Happy ~ Income5 + Income6 + EducationLevel4 
-    + Party5 + Q119334 + Q118237 
-    + Q117186 + Q117193 + Q113584 
-    + Q107869 + Q102906 + Q102687 + Q101162 
-    + Q99716 + Q98869 + Q98197, 
+    Happy ~ Q1227702 + Q1217002 + Q1210112 + Q1200142 + Q1193342 + Q1182332
+    + Q1182372 + Q1171932 + Q1164412 + Q1153902 + Q1147482 + Q1135832
+    + Q1087542 + Q1083422 + Q1078692 + Q1029062 + Q1022892 + Q1011622, 
     data = train, family=binomial)
 testPred = predict(submissionHappyLog, type="response", newdata=test)
 submission = data.frame(UserID = test$UserID, Probability1 = testPred)
