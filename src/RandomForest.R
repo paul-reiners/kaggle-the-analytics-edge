@@ -1,6 +1,9 @@
 ## RANDOM FOREST
 
-# Current AUC = 0.7361056/xxx
+# Current AUC = 0.7361056/0.74277
+
+# Your submission scored 0.74277, which is not an improvement of your best score. 
+# Keep trying!
 
 setwd("~/Dropbox/education/EdX/MITx/15.071x/kaggle-the-analytics-edge")
 library('ProjectTemplate')

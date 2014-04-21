@@ -1,1 +1,5 @@
-Algorithm,My AUC,Official AUCRandomForestSomeVars,0.745401,0.72505ConditionalRandomForest,0.7457412,RandomForest,0.7361056,LogisticRegression,0.7225837,
+Algorithm,My AUC,Official AUC
+RandomForest,0.7361056,0.74277
+ConditionalRandomForest,0.7457412,0.73201
+RandomForestSomeVars,0.745401,0.72505
+LogisticRegression,0.7225837,0.72153
