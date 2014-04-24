@@ -10,9 +10,7 @@ NTREE = 2000
 
 # Build random forest model
 set.seed(415)
-fit <- cforest(as.factor(Happy) ~ YOB + HouseholdStatus + Q118237 + Q101162 + Q107869 + Q102289 
-               + Q106997 + Q98869 + Q119334 + Q120014 + Q108855 + Q115610 + Q108343 + Q116953
-               + Q121011 + Q117186 + Q108617 + Q108617,
+fit <- cforest(as.factor(Happy) ~ . - UserID,
                data = trainTrain, controls=cforest_unbiased(ntree=NTREE, mtry=3))
 
 # Make predictions

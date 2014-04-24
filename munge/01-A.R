@@ -9,6 +9,14 @@ train$YOB = as.numeric(train$YOB)
 test$YOB = destring(as.character(test$YOB))
 test$YOB = as.numeric(test$YOB)
 
+train$YOB[train$YOB < 1930] = 0
+train$YOB[train$YOB > 2004] = 0
+train$YOB[is.na(train$YOB)] = 0
+
+test$YOB[test$YOB < 1930] = 0
+test$YOB[test$YOB > 2004] = 0
+test$YOB[is.na(test$YOB)] = 0
+
 ## Clean up Income
 incomeLevels = 
   c("under $25,000", "$25,001 - $50,000", "$50,000 - $74,999", 
