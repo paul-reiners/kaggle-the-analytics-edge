@@ -4,6 +4,6 @@ recursive_loading: off
 munging: on
 logging: off
 load_libraries: on
-libraries: ROCR, caTools, mice, rpart, rpart.plot, caret, e1071, randomForest, taRifx, party
+libraries: ROCR, caTools, mice, rpart, rpart.plot, caret, e1071, randomForest, taRifx
 as_factors: on
 data_tables: off
